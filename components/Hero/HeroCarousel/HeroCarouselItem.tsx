@@ -1,53 +1,23 @@
-import { useRef, useState } from "react";
+import { BaseSyntheticEvent, useState } from "react";
 
 type CarouselItemData = {
   name: string;
   genres: string[];
-  cardContainer: HTMLDivElement | null;
+  callback: (ev: BaseSyntheticEvent) => void;
 };
 
-export default function HeroCarouselItem({
-  name,
-  genres,
-  cardContainer,
-}: CarouselItemData) {
+export default function HeroCarouselItem(props: CarouselItemData) {
+  const { name, genres, callback } = props;
   const [itemIsExpanded, setItemIsExpanded] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  const handleCarouselItemClick = () => {
-    const cardItemClicked = cardRef.current;
-    const cardItemOffsetX = cardItemClicked?.getBoundingClientRect().x;
-    const cardItemOffsetY = cardItemClicked?.getBoundingClientRect().y;
-
-    if (cardItemClicked !== null && cardContainer !== null) {
-      setItemIsExpanded(!itemIsExpanded);
-      console.log("before transition:", cardItemOffsetY);
-      cardItemClicked.ontransitionend = () => {
-        console.log("after transition:", cardItemOffsetY);
-        window.scrollTo({
-          top: cardItemOffsetY,
-          behavior: "smooth",
-        });
-      };
-
-      console.log("card item x:", cardItemClicked?.getBoundingClientRect().x);
-      console.log("itemContainer scroll left:", cardContainer?.scrollLeft);
-
-      if (cardItemOffsetX != null && cardItemOffsetY != null) {
-        cardContainer.scrollLeft = cardItemOffsetX < 0 ? 0 : cardItemOffsetX;
-      }
-
-      // disable scroll
-    }
-  };
-
   return (
     <div
       className={`inline-flex transition-all ${
         itemIsExpanded ? "h-screen w-screen" : "h-52 w-52"
       } flex-shrink-0 flex-col items-center justify-center bg-slate-800 p-4`}
-      ref={cardRef}
-      onClick={handleCarouselItemClick}
+      onClick={(ev) => {
+        callback(ev);
+        setItemIsExpanded(!itemIsExpanded);
+      }}
     >
       <h2 className="mb-2">{name}</h2>
       <h3 className="mb-4">{genres[0]}</h3>
