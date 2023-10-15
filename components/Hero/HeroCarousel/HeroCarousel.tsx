@@ -24,22 +24,21 @@ export default function HeroCarousel(): React.ReactNode {
     const cardContainer = cardContainerRef.current;
     const cardItemClicked = event.target;
 
-    if (cardItemClicked !== null && cardContainer !== null) {
-      cardItemClicked.ontransitionend = () => {
-        const cardItemOffsetX = cardItemClicked?.getBoundingClientRect().x;
-        const cardItemOffsetY = cardItemClicked?.getBoundingClientRect().y;
+    // if (cardItemClicked !== null && cardContainer !== null) {
+    //   cardItemClicked.ontransitionend = () => {
+    //     const cardItemOffsetX = cardItemClicked?.getBoundingClientRect().x;
+    //     const cardItemOffsetY = cardItemClicked?.getBoundingClientRect().y;
 
-        window.scrollTo({
-          top: cardItemOffsetY,
-          behavior: "smooth",
-        });
+    //     window.scrollTo({
+    //       top: cardItemOffsetY,
+    //       behavior: "smooth",
+    //     });
 
-        console.log("cardItemOffsetX:", cardItemOffsetX);
-        console.log("cardItemOffsetY:", cardItemOffsetY);
-        cardContainer.scrollLeft = cardItemOffsetX < 0 ? 0 : cardItemOffsetX;
-      };
-      // disable scroll
-    }
+    //     cardContainer.scrollLeft = cardItemOffsetX < 0 ? 0 : cardItemOffsetX;
+    //   };
+
+    //   // disable scroll
+    // }
   };
 
   return (

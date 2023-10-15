@@ -9,11 +9,16 @@ type CarouselItemData = {
 export default function HeroCarouselItem(props: CarouselItemData) {
   const { name, genres, callback } = props;
   const [itemIsExpanded, setItemIsExpanded] = useState(false);
+
+  const styles = {
+    itemContainer: `inline-flex transition-all ${
+      itemIsExpanded ? "h-screen w-screen" : "h-52 w-52"
+    } flex-shrink-0 flex-col items-center justify-center bg-slate-800 p-4`,
+  };
+
   return (
     <div
-      className={`inline-flex transition-all ${
-        itemIsExpanded ? "h-screen w-screen" : "h-52 w-52"
-      } flex-shrink-0 flex-col items-center justify-center bg-slate-800 p-4`}
+      className={styles.itemContainer}
       onClick={(ev) => {
         callback(ev);
         setItemIsExpanded(!itemIsExpanded);
