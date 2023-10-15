@@ -1,72 +1,46 @@
-type ButtonData = {
-  url: string;
-  text: string;
-};
-
-type CarouselItemData = {
-  name: string;
-  genres: string[];
-  button: ButtonData;
-};
-
-function HeroCarouselItem({ name, genres, button }: CarouselItemData) {
-  return (
-    <div
-      className={`inline-flex h-52 w-52 flex-shrink-0 flex-col items-center justify-center bg-slate-800 p-4`}
-    >
-      <h2>{name}</h2>
-      <h3>{genres[0]}</h3>
-      <a
-        className="rounded-full border bg-orange-400 px-4 py-2"
-        href={button.url}
-      >
-        {button.text}
-      </a>
-    </div>
-  );
-}
+import { useRef, useState, useEffect, forwardRef } from "react";
+import HeroCarouselItem from "@/components/Hero/HeroCarousel/HeroCarouselItem";
 
 export default function HeroCarousel(): React.ReactNode {
   const mockDataBand = [
     {
       name: "VSTKO",
       genres: ["electronic", "grunge", "alternative"],
-      button: {
-        text: "Curiosear",
-        url: "https://soundcloud.com/k_fm/heartcenterfold",
-      },
     },
     {
       name: "Wells",
       genres: ["grunge", "alternative", "psycodelic"],
-      button: {
-        text: "Curiosear",
-        url: "https://soundcloud.com/k_fm/sets/los-wells-demente-y-chocolete",
-      },
     },
     {
       name: "Fotoconfetti",
       genres: ["brit", "orquestado", "cinematic"],
-      button: {
-        text: "Curiosear",
-        url: "https://soundcloud.com/k_fm/sets/radioespejos",
-      },
     },
   ];
 
+  const cardContainerRef = useRef<HTMLDivElement>(null);
+  const cardContainer = cardContainerRef.current;
+
+  const HeroCarousel = forwardRef(function HeroCarousel(props, ref) {});
+
+  useEffect(() => {
+    console.log("cardContainer:", cardContainer);
+  }, [cardContainer]);
+
   return (
     <div
-      className="no-scrollbar inline-flex gap-4 overflow-x-auto pl-8"
+      className="no-scrollbar inline-flex snap-x gap-4 overflow-x-auto px-8"
       style={{
         width: "100vw",
         marginLeft: "calc((100% - 100vw)/2)",
       }}
+      ref={cardContainerRef}
     >
       {mockDataBand.map((band) => (
         <HeroCarouselItem
+          key={band.name}
           name={band.name}
           genres={band.genres}
-          button={band.button}
+          cardContainer={cardContainer}
         />
       ))}
     </div>
