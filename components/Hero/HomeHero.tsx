@@ -1,15 +1,18 @@
 "use client";
 
+import { ReactNode } from "react";
+
 import HeroCarousel from "@/components/Hero/HeroCarousel/HeroCarousel";
 
-export default function Hero() {
-  return (
-    <div className="min-w-screen flex min-h-screen flex-col justify-center bg-slate-900 p-8 align-middle">
+export default function HomeHero() {
+  const HeroHeader: ReactNode = (
+    <>
       <h1 className="mb-4 text-white">Madremusica</h1>
       <h2 className="mb-4 text-white">
         Un santuario sonoro de mariposas y taras bruja
       </h2>
-      <HeroCarousel />
-    </div>
+    </>
   );
+
+  return <HeroCarousel>{HeroHeader}</HeroCarousel>;
 }
