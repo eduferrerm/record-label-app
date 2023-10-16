@@ -4,6 +4,7 @@ import {
   useEffect,
   BaseSyntheticEvent,
   ReactNode,
+  RefObject,
 } from "react";
 /*
 Eventual Data
@@ -46,9 +47,7 @@ export default function HeroCarousel({ children }: Header): React.ReactNode {
   ];
 
   const [itemWasClicked, setItemWasClicked] = useState(false);
-
   const cardContainerRef = useRef<HTMLDivElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
 
   const styles = {
@@ -62,13 +61,23 @@ export default function HeroCarousel({ children }: Header): React.ReactNode {
     },
   };
 
-  const handleCarouselItemClick = (event: BaseSyntheticEvent): void => {
+  const handleCarouselItemClick = (
+    event: BaseSyntheticEvent,
+    itemClicked?: HTMLDivElement | null,
+  ): void => {
     const cardContainer = cardContainerRef.current;
     const header = headerRef.current;
     const cardItemClicked = event.target;
 
     if (cardItemClicked.getAttribute("data-target-type") != null) {
       setItemWasClicked(!itemWasClicked);
+      console.log("get element:", itemClicked);
+
+      if (itemClicked != null) {
+        itemClicked.ontransitionend = () => {
+          itemClicked.style.border = "1px solid red";
+        };
+      }
     }
 
     // if (cardItemClicked !== null && cardContainer !== null) {
