@@ -6,24 +6,8 @@ import {
   ReactNode,
   RefObject,
 } from "react";
-/*
-Eventual Data
-{
-  name: "VSTKO",
-  genres: ["electronic", "grunge", "alternative"],
-  streamingURLs: {
-    spotify: 'https://spotify/yeah',
-    appleMusic: https://apple-music/yeah
-  }
-  recentActivity: [
-    // this array should populate dynamically, and take any of: 
-      // songs object, video object, post object, event object
-      // should populate based on the latest updates, use timestamps for uploaded content
-      // Use Enum   
-  ]
-},
-*/
 
+import { mockDataBand } from "../../../mockData";
 import HeroCarouselItem from "@/components/Hero/HeroCarousel/HeroCarouselItem";
 
 type Header = {
@@ -31,88 +15,95 @@ type Header = {
 };
 
 export default function HeroCarousel({ children }: Header): React.ReactNode {
-  const mockDataBand = [
-    {
-      name: "VSTKO",
-      genres: ["electronic", "grunge", "alternative"],
-    },
-    {
-      name: "Wells",
-      genres: ["grunge", "alternative", "psycodelic"],
-    },
-    {
-      name: "Fotoconfetti",
-      genres: ["brit", "orquestado", "cinematic"],
-    },
-  ];
-
-  const [itemWasClicked, setItemWasClicked] = useState(false);
+  const [itemIsExpanded, setitemIsExpanded] = useState(false);
   const cardContainerRef = useRef<HTMLDivElement>(null);
+  const cardItemWrapperRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
 
   const styles = {
     heroContainer: `relative min-w-screen flex min-h-screen flex-col justify-center bg-slate-900 p-8 align-middle overflow-hidden`,
-    carouselListItemsWrapper: `no-scrollbar absolute left-0 bottom-0 inline-flex snap-x gap-2 overflow-x-auto transition-all ${
-      itemWasClicked ? "" : "mb-8 pl-8"
+    carouselListItemsWrapper: `no-scrollbar absolute left-0 bottom-0 inline-flex snap-x gap-2 overflow-x-auto transition-all duration-1000 ${
+      itemIsExpanded ? "" : "mb-8 px-8"
     }`,
     fullWidthContainer: {
       width: "100vw",
       marginLeft: "calc((100% - 100vw)/2)",
     },
+    cardItemDirectWrapper: `inline-flex gap-4 transition-all duration-1000`,
   };
+
+  // const predictXPosition = (element) => {
+
+  // }
 
   const handleCarouselItemClick = (
     event: BaseSyntheticEvent,
     itemClicked?: HTMLDivElement | null,
   ): void => {
     const cardContainer = cardContainerRef.current;
+    const cardItemWrapper = cardItemWrapperRef.current;
     const header = headerRef.current;
     const cardItemClicked = event.target;
 
     if (cardItemClicked.getAttribute("data-target-type") != null) {
-      setItemWasClicked(!itemWasClicked);
-      console.log("get element:", itemClicked);
+      setitemIsExpanded(!itemIsExpanded);
 
-      if (itemClicked != null) {
-        itemClicked.ontransitionend = () => {
-          itemClicked.style.border = "1px solid red";
-        };
+      if (
+        itemClicked != null &&
+        cardContainer != null &&
+        cardItemWrapper != null
+      ) {
+        console.log(
+          "cardItemWrapper x:",
+          cardItemWrapper.getBoundingClientRect().x,
+        );
+        console.log("itemCLicked x:", itemClicked.getBoundingClientRect().x);
+
+        // Finish starting animation
+        // get padding value of container
+        const containerPadding = window
+          .getComputedStyle(cardContainer)
+          .getPropertyValue("padding-left");
+
+        // move wrapper using calculated value above
+        if (itemIsExpanded) {
+          cardItemWrapper.style.transform = "translate(0,0)";
+        } else {
+          if (itemClicked.getBoundingClientRect().x > 0) {
+            cardItemWrapper.style.transform = `translate(-${
+              itemClicked.getBoundingClientRect().x - parseInt(containerPadding)
+            }px, 0)`;
+          } else {
+            cardItemWrapper.style.transform = `translate(${
+              itemClicked.getBoundingClientRect().x - parseInt(containerPadding)
+            }px, 0)`;
+          }
+        }
+
+        // disable scroll when item is expanded
       }
     }
-
-    // if (cardItemClicked !== null && cardContainer !== null) {
-    //   cardItemClicked.ontransitionend = () => {
-    //     const cardItemOffsetX = cardItemClicked?.getBoundingClientRect().x;
-    //     const cardItemOffsetY = cardItemClicked?.getBoundingClientRect().y;
-
-    //     window.scrollTo({
-    //       top: cardItemOffsetY,
-    //       behavior: "smooth",
-    //     });
-
-    //     cardContainer.scrollLeft = cardItemOffsetX < 0 ? 0 : cardItemOffsetX;
-    //   };
-
-    //   // disable scroll
-    // }
   };
 
   return (
     <div className={styles.heroContainer}>
       <header ref={headerRef}>{children}</header>
       <div
+        id="carouselListItemsWrapper"
         className={styles.carouselListItemsWrapper}
         style={styles.fullWidthContainer}
         ref={cardContainerRef}
       >
-        {mockDataBand.map((band) => (
-          <HeroCarouselItem
-            key={band.name}
-            name={band.name}
-            genres={band.genres}
-            callback={handleCarouselItemClick}
-          />
-        ))}
+        <div className={styles.cardItemDirectWrapper} ref={cardItemWrapperRef}>
+          {mockDataBand.map((band) => (
+            <HeroCarouselItem
+              key={band.name}
+              name={band.name}
+              genres={band.genres}
+              callback={handleCarouselItemClick}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -12,9 +12,9 @@ export default function HeroCarouselItem(props: CarouselItemData) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   const styles = {
-    itemContainer: `inline-flex transition-all ${
+    itemContainer: `inline-flex transition-all duration-700 flex-shrink-0 flex-col self-end items-center justify-center bg-slate-800 p-4 ${
       itemIsExpanded ? "h-screen w-screen" : "h-52 w-52"
-    } flex-shrink-0 flex-col items-center justify-center bg-slate-800 p-4`,
+    }`,
     button: `rounded-full border bg-orange-400 px-4 py-2`,
   };
 
