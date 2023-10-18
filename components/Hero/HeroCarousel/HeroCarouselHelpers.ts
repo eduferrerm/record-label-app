@@ -1,32 +1,25 @@
 
-export const calcAndMoveLeft = (
+export const calculateAndMoveCardWrapper = (
   cardItemWrapper: HTMLDivElement,
   itemClicked: HTMLDivElement,
   containerPadding: number
 ): void => {
+  let moveLeft = null;
+  let calculation = null;
 
-  const calculation = itemClicked.getBoundingClientRect().x - containerPadding;
-  cardItemWrapper.style.transform = `translate(-${calculation}px, 0)`;
+  const itemClickedLeftEdge = itemClicked.getBoundingClientRect().x;
+  const itemClickedRightEdge = itemClicked.getBoundingClientRect().right;
+  const itemClickedWidth = itemClicked.getBoundingClientRect().width;
 
-  console.log('called: calcAndMoveLeft')
-  console.log('calculation:', calculation);
-  console.log(' ')
-}
+  if (itemClickedLeftEdge > 0) {
+    moveLeft = true;
+    calculation = itemClickedLeftEdge - containerPadding;
 
-export const calcAndMoveRight = (
-  cardItemWrapper: HTMLDivElement,
-  itemClicked: HTMLDivElement,
-  containerPadding: number
-): void => {
-
-  const calculation = itemClicked.getBoundingClientRect().width -
-    itemClicked.getBoundingClientRect().right +
-    containerPadding;
-
-  cardItemWrapper.style.transform = `translate(${calculation}px, 0)`;
-
-  console.log('called: calcAndMoveRight')
-  console.log('');
+  } else if (itemClickedLeftEdge <= 0) {
+    moveLeft = false;
+    calculation = itemClickedWidth - itemClickedRightEdge + containerPadding;
+  }
+  cardItemWrapper.style.transform = `translate(${moveLeft ? '-' : ''}${calculation}px,0)`;
 }
 
 export const removeTransform = (cardItemWrapper: HTMLDivElement): void => {

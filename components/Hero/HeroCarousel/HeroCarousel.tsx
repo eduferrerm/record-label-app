@@ -1,9 +1,8 @@
-import { useRef, useState, BaseSyntheticEvent } from "react";
+import { useRef, useState } from "react";
 import { mockDataBand } from "@/mockData";
 import {
-  calcAndMoveLeft,
-  calcAndMoveRight,
   removeTransform,
+  calculateAndMoveCardWrapper,
 } from "./HeroCarouselHelpers";
 
 import HeroCarouselItem from "@/components/Hero/HeroCarousel/HeroCarouselItem";
@@ -51,13 +50,11 @@ export default function HeroCarousel({ children }: Header): React.ReactNode {
       if (itemIsExpanded) {
         removeTransform(cardItemWrapper);
       } else {
-        if (itemClicked.getBoundingClientRect().x > 0) {
-          // console.log("itemClicked x:", itemClicked.getBoundingClientRect().x);
-
-          calcAndMoveLeft(cardItemWrapper, itemClicked, containerPadding);
-        } else if (itemClicked.getBoundingClientRect().x <= 0) {
-          calcAndMoveRight(cardItemWrapper, itemClicked, containerPadding);
-        }
+        calculateAndMoveCardWrapper(
+          cardItemWrapper,
+          itemClicked,
+          containerPadding,
+        );
       }
     }
   };
