@@ -8,23 +8,21 @@ type Header = {
   children: React.ReactNode;
 };
 
+const styles = {
+  heroContainer: `relative min-w-screen flex min-h-screen flex-col justify-center bg-slate-900 p-8 align-middle overflow-hidden`,
+  carouselListItemsWrapper: `no-scrollbar absolute left-0 bottom-0 inline-flex gap-2 snap-x  transition-all duration-500`,
+  cardItemDirectWrapper: `inline-flex gap-4 transition-all duration-500`,
+  fullWidthContainer: {
+    width: "100vw",
+    marginLeft: "calc((100% - 100vw)/2)",
+  },
+};
+
 export default function HeroCarousel({ children }: Header): React.ReactNode {
   const [itemIsExpanded, setitemIsExpanded] = useState(false);
   const cardContainerRef = useRef<HTMLDivElement>(null);
   const cardItemWrapperRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
-
-  const styles = {
-    heroContainer: `relative min-w-screen flex min-h-screen flex-col justify-center bg-slate-900 p-8 align-middle overflow-hidden`,
-    carouselListItemsWrapper: `no-scrollbar absolute left-0 bottom-0 inline-flex gap-2 snap-x  transition-all duration-500 ${
-      itemIsExpanded ? "overflow-hidden" : "mb-8 px-8 overflow-x-auto"
-    }`,
-    fullWidthContainer: {
-      width: "100vw",
-      marginLeft: "calc((100% - 100vw)/2)",
-    },
-    cardItemDirectWrapper: `inline-flex gap-4 transition-all duration-500`,
-  };
 
   const handleCarouselItemClick = (
     itemClicked?: HTMLDivElement | null,
@@ -56,7 +54,9 @@ export default function HeroCarousel({ children }: Header): React.ReactNode {
     <div className={styles.heroContainer}>
       <header ref={headerRef}>{children}</header>
       <div
-        className={styles.carouselListItemsWrapper}
+        className={`${styles.carouselListItemsWrapper} ${
+          itemIsExpanded ? "overflow-hidden" : "mb-8 overflow-x-auto px-8"
+        }`}
         style={styles.fullWidthContainer}
         ref={cardContainerRef}
       >
