@@ -1,13 +1,11 @@
+import { useRef, useState, BaseSyntheticEvent } from "react";
+import { mockDataBand } from "@/mockData";
 import {
-  useRef,
-  useState,
-  useEffect,
-  BaseSyntheticEvent,
-  ReactNode,
-  RefObject,
-} from "react";
+  calcAndMoveLeft,
+  calcAndMoveRight,
+  removeTransform,
+} from "./HeroCarouselHelpers";
 
-import { mockDataBand } from "../../../mockData";
 import HeroCarouselItem from "@/components/Hero/HeroCarousel/HeroCarouselItem";
 
 type Header = {
@@ -22,7 +20,7 @@ export default function HeroCarousel({ children }: Header): React.ReactNode {
 
   const styles = {
     heroContainer: `relative min-w-screen flex min-h-screen flex-col justify-center bg-slate-900 p-8 align-middle overflow-hidden`,
-    carouselListItemsWrapper: `no-scrollbar absolute left-0 bottom-0 inline-flex snap-x gap-2 transition-all duration-500 ${
+    carouselListItemsWrapper: `no-scrollbar absolute left-0 bottom-0 inline-flex gap-2 snap-x  transition-all duration-500 ${
       itemIsExpanded ? "overflow-hidden" : "mb-8 px-8 overflow-x-auto"
     }`,
     fullWidthContainer: {
@@ -33,47 +31,33 @@ export default function HeroCarousel({ children }: Header): React.ReactNode {
   };
 
   const handleCarouselItemClick = (
-    event: BaseSyntheticEvent,
     itemClicked?: HTMLDivElement | null,
   ): void => {
     const cardContainer = cardContainerRef.current;
     const cardItemWrapper = cardItemWrapperRef.current;
     const header = headerRef.current;
-    const cardItemClicked = event.target;
 
-    if (cardItemClicked.getAttribute("data-target-type") != null) {
-      setitemIsExpanded(!itemIsExpanded);
+    setitemIsExpanded(!itemIsExpanded);
 
-      if (
-        itemClicked != null &&
-        cardContainer != null &&
-        cardItemWrapper != null
-      ) {
-        const containerPadding = parseInt(
-          window
-            .getComputedStyle(cardContainer)
-            .getPropertyValue("padding-left"),
-        );
+    if (
+      itemClicked != null &&
+      cardContainer != null &&
+      cardItemWrapper != null
+    ) {
+      const containerPadding = parseInt(
+        window.getComputedStyle(cardContainer).getPropertyValue("padding-left"),
+      );
 
-        if (itemIsExpanded) {
-          cardItemWrapper.style.transform = "translate(0,0)";
-        } else {
-          if (itemClicked.getBoundingClientRect().x > 0) {
-            // clicked item is within viewport
-            cardItemWrapper.style.transform = `translate(-${
-              itemClicked.getBoundingClientRect().x - containerPadding
-            }px, 0)`;
-          } else {
-            // clicked item is past viewport left border
-            cardItemWrapper.style.transform = `translate(${
-              itemClicked.getBoundingClientRect().width -
-              itemClicked.getBoundingClientRect().right +
-              containerPadding
-            }px, 0)`;
-          }
+      if (itemIsExpanded) {
+        removeTransform(cardItemWrapper);
+      } else {
+        if (itemClicked.getBoundingClientRect().x > 0) {
+          // console.log("itemClicked x:", itemClicked.getBoundingClientRect().x);
+
+          calcAndMoveLeft(cardItemWrapper, itemClicked, containerPadding);
+        } else if (itemClicked.getBoundingClientRect().x <= 0) {
+          calcAndMoveRight(cardItemWrapper, itemClicked, containerPadding);
         }
-
-        // disable scroll when item is expanded
       }
     }
   };

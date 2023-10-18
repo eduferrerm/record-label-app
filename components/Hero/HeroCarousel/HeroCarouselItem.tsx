@@ -3,7 +3,7 @@ import { BaseSyntheticEvent, useRef, useState } from "react";
 type CarouselItemData = {
   name: string;
   genres: string[];
-  callback: (ev: BaseSyntheticEvent, node: HTMLDivElement | null) => void;
+  callback: (node: HTMLDivElement | null) => void;
 };
 
 export default function HeroCarouselItem(props: CarouselItemData) {
@@ -25,8 +25,8 @@ export default function HeroCarouselItem(props: CarouselItemData) {
       <button
         className={styles.button}
         data-target-type="button"
-        onClick={(ev) => {
-          callback(ev, cardRef.current);
+        onClick={() => {
+          callback(cardRef.current);
           setItemIsExpanded(!itemIsExpanded);
         }}
       >
