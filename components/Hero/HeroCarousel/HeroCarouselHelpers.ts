@@ -1,5 +1,5 @@
 
-export const calculateAndMoveCardWrapper = (
+export const transformCardWrapper = (
   cardItemWrapper: HTMLDivElement,
   itemClicked: HTMLDivElement,
   containerPadding: number
@@ -11,14 +11,15 @@ export const calculateAndMoveCardWrapper = (
   const itemClickedRightEdge = itemClicked.getBoundingClientRect().right;
   const itemClickedWidth = itemClicked.getBoundingClientRect().width;
 
-  if (itemClickedLeftEdge > 0) {
+  if (itemClickedLeftEdge > 0 && itemClickedLeftEdge > containerPadding) {
     moveLeft = true;
     calculation = itemClickedLeftEdge - containerPadding;
 
-  } else if (itemClickedLeftEdge <= 0) {
+  } else {
     moveLeft = false;
     calculation = itemClickedWidth - itemClickedRightEdge + containerPadding;
   }
+
   cardItemWrapper.style.transform = `translate(${moveLeft ? '-' : ''}${calculation}px,0)`;
 }
 
