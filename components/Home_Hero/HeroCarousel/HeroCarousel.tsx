@@ -2,20 +2,20 @@ import { useRef, useState } from "react";
 import { mockDataBand } from "@/mockData";
 import { transformCardWrapper, removeTransform } from "./HeroCarouselHelpers";
 
-import HeroCarouselItem from "@/components/Hero/HeroCarousel/HeroCarouselItem";
-
-type Header = {
-  children: React.ReactNode;
-};
+import HeroCarouselItem from "@/components/Home_Hero/HeroCarousel/HeroCarouselItem";
 
 const styles = {
-  heroContainer: `relative min-w-screen flex min-h-screen flex-col justify-center bg-slate-900 p-8 align-middle overflow-hidden`,
+  heroContainer: `relative min-w-screen flex min-h-screen flex-col justify-center bg-mds-grey-100 p-8 align-middle overflow-hidden`,
   carouselListItemsWrapper: `no-scrollbar absolute left-0 bottom-0 inline-flex gap-2 snap-x  transition-all duration-500`,
   cardItemDirectWrapper: `inline-flex gap-4 transition-all duration-500`,
   fullWidthContainer: {
     width: "100vw",
     marginLeft: "calc((100% - 100vw)/2)",
   },
+};
+
+type Header = {
+  children: React.ReactNode;
 };
 
 export default function HeroCarousel({ children }: Header): React.ReactNode {
@@ -67,6 +67,7 @@ export default function HeroCarousel({ children }: Header): React.ReactNode {
               name={band.name}
               genres={band.genres}
               callback={handleCarouselItemClick}
+              recentActivity={band.recentActivity}
             />
           ))}
         </div>
