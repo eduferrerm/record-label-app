@@ -1,3 +1,4 @@
+import MDSText from "@/components/Design_System/MDSText";
 import { useRef, useState } from "react";
 
 const styles = {
@@ -40,8 +41,6 @@ export default function HeroCarouselItem({
   const [itemIsExpanded, setItemIsExpanded] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
-  console.log("recentActivity:", recentActivity);
-
   return (
     <div
       className={`${styles.itemContainer} ${
@@ -50,11 +49,10 @@ export default function HeroCarouselItem({
       ref={cardRef}
     >
       <div className={styles.contentContainer}>
-        <h2 className="mb-2">{name}</h2>
-        <h3 className="mb-4">{genres[0]}</h3>
+        <MDSText text={name} styleName={"hero-card-band"} />
+        <MDSText text={genres[0]} styleName={"meta-data"} />
         <button
           className={styles.button}
-          data-target-type="button"
           onClick={() => {
             callback(cardRef.current);
             setItemIsExpanded(!itemIsExpanded);
