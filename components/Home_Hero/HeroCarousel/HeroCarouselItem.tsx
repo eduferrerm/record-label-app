@@ -2,8 +2,8 @@ import MDSText from "@/components/Design_System/MDSText";
 import { useRef, useState } from "react";
 
 const styles = {
-  itemContainer: `relative inline-flex flex-shrink-0 flex-col self-end items-center justify-center overflow-hidden bg-slate-800 p-4 transition-all duration-500`,
-  contentContainer: `relative z-20 flex flex-col items-center justify-center`,
+  itemContainer: `relative inline-flex flex-shrink-0 flex-col self-end items-center justify-center overflow-hidden bg-mds-grey-50 p-4 transition-all duration-500`,
+  contentContainer: `relative z-20 flex flex-col items-center justify-center text-mds-grey-600`,
   button: `rounded-full border bg-orange-400 px-4 py-2`,
 };
 
