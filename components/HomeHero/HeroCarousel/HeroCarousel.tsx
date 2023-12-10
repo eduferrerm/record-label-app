@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { mockDataBand } from "@/mockData";
 import { transformCardWrapper, removeTransform } from "./HeroCarouselHelpers";
 
-import HeroCarouselItem from "@/components/Home_Hero/HeroCarousel/HeroCarouselItem";
+import HeroCarouselItem from "@/components/HomeHero/HeroCarousel/HeroCarouselItem";
 
 const styles = {
   heroContainer: `relative min-w-screen flex min-h-screen flex-col justify-center bg-mds-grey-100 p-8 align-middle overflow-hidden`,

@@ -1,4 +1,4 @@
-import MDSText from "@/components/Design_System/MDSText";
+import MDSText from "@/components/DesignSystem/MDSText";
 import { useRef, useState } from "react";
 
 const styles = {
@@ -6,14 +6,6 @@ const styles = {
   contentContainer: `relative z-20 flex flex-col items-center justify-center text-mds-grey-600`,
   button: `rounded-full border bg-orange-400 px-4 py-2`,
 };
-
-enum SlideType {
-  "song",
-  "event",
-  "about",
-  "video",
-  "post",
-}
 
 export type SlideData = {
   type: string;

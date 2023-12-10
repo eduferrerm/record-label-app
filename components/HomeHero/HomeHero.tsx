@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import HeroCarousel from "@/components/Home_Hero/HeroCarousel/HeroCarousel";
+import HeroCarousel from "@/components/HomeHero/HeroCarousel/HeroCarousel";
 
 export default function HomeHero() {
   const HeroHeader: ReactNode = (
