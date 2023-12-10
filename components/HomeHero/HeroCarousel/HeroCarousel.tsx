@@ -1,5 +1,6 @@
+"use client";
+
 import { useRef, useState } from "react";
-import { mockDataBand } from "@/mockData";
 import { transformCardWrapper, removeTransform } from "./HeroCarouselHelpers";
 
 import HeroCarouselItem from "@/components/HomeHero/HeroCarousel/HeroCarouselItem";
@@ -14,24 +15,24 @@ const styles = {
   },
 };
 
-type Header = {
-  children: React.ReactNode;
-};
+interface HeroCarousel {
+  bands: Band[];
+}
 
-export default function HeroCarousel({ children }: Header): React.ReactNode {
+export default function HeroCarousel({ bands }: HeroCarousel): React.ReactNode {
   const [itemIsExpanded, setitemIsExpanded] = useState(false);
   const cardContainerRef = useRef<HTMLDivElement>(null);
   const cardItemWrapperRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
 
   const handleCarouselItemClick = (
     itemClicked?: HTMLDivElement | null,
   ): void => {
     const cardContainer = cardContainerRef.current;
     const cardItemWrapper = cardItemWrapperRef.current;
-    const header = headerRef.current;
 
     setitemIsExpanded(!itemIsExpanded);
+
+    console.log("bandData:", bands);
 
     if (
       itemClicked != null &&
@@ -52,7 +53,16 @@ export default function HeroCarousel({ children }: Header): React.ReactNode {
 
   return (
     <div className={styles.heroContainer}>
-      <header ref={headerRef}>{children}</header>
+      <header className="text-mds-grey-600">
+        <h1 className="mb-4 font-mds-sans-cond-bold uppercase leading-none">
+          Melo
+          <br />
+          humano
+          <br />
+          Records
+        </h1>
+        <h2 className="mb-4">Un santuario sonoro de mariposas y taras bruja</h2>
+      </header>
       <div
         className={`${styles.carouselListItemsWrapper} ${
           itemIsExpanded ? "overflow-hidden" : "mb-8 overflow-x-auto px-8"
@@ -61,13 +71,12 @@ export default function HeroCarousel({ children }: Header): React.ReactNode {
         ref={cardContainerRef}
       >
         <div className={styles.cardItemDirectWrapper} ref={cardItemWrapperRef}>
-          {mockDataBand.map((band) => (
+          {bands.map((band) => (
             <HeroCarouselItem
               key={band.name}
               name={band.name}
               genres={band.genres}
               callback={handleCarouselItemClick}
-              recentActivity={band.recentActivity}
             />
           ))}
         </div>
