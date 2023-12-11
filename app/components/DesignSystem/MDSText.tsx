@@ -40,7 +40,6 @@ interface MDSTextType {
   styleName: MDSTextStyleNames;
   color?: MDSTextColorNames;
   children: string | JSX.Element | JSX.Element[];
-  isList?: boolean;
 }
 
 function getStyle(style: MDSTextStyleNames): string {
