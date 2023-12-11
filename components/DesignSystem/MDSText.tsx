@@ -10,6 +10,7 @@ const MDSTextStyles = {
   ["subtitle"]: `${MDSFonts.condMed} mds-text-3 leading-none`,
   ["primary-label"]: `${MDSFonts.condBold} mds-text-1 leading-none`,
   ["meta-data"]: `${MDSFonts.condMed} mds-text-1 leading-none`,
+  ["meta-data-list"]: `${MDSFonts.condMed} mds-text-1 leading-none flex gap-mds-space-1 capitalize`,
   ["paragraph"]: `${MDSFonts.sans} mds-text-2 leading-relaxed`,
   // Hero
   ["hero-card-band"]: `${MDSFonts.condBold} mds-text-1 leading-none uppercase bg-mds-grey-600 text-mds-grey-50 px-2 py-1`,
@@ -36,9 +37,10 @@ type MDSTextStyleNames = keyof typeof MDSTextStyles;
 type MDSTextColorNames = keyof typeof MDSTextColor;
 
 interface MDSTextType {
-  text: string;
   styleName: MDSTextStyleNames;
   color?: MDSTextColorNames;
+  children: string | JSX.Element | JSX.Element[];
+  isList?: boolean;
 }
 
 function getStyle(style: MDSTextStyleNames): string {
@@ -49,10 +51,9 @@ function getColor(style: MDSTextColorNames): string {
   return MDSTextColor[style];
 }
 
-export default function MDSText({ text, styleName, color }: MDSTextType) {
+export default function MDSText({ styleName, color, children }: MDSTextType) {
+  const textColor = color != null ? getColor(color) : "";
   return (
-    <span className={`${getStyle(styleName)} ${color && getColor(color)}`}>
-      {text}
-    </span>
+    <span className={`${getStyle(styleName)} ${textColor}`}>{children}</span>
   );
 }

@@ -1,3 +1,4 @@
+import MDSMetaData from "@/components/DesignSystem/MDSMetaData";
 import MDSText from "@/components/DesignSystem/MDSText";
 import { useRef, useState } from "react";
 
@@ -29,10 +30,8 @@ export default function HeroCarouselItem({
       ref={cardRef}
     >
       <div className={styles.contentContainer}>
-        <MDSText text={name} styleName={"hero-card-band"} />
-        {genres.map((genre) => (
-          <MDSText key={genre} text={genre} styleName={"meta-data"} />
-        ))}
+        <MDSText styleName={"hero-card-band"}>{name}</MDSText>
+        <MDSMetaData list={genres} />
         <button
           className={styles.button}
           onClick={() => {
