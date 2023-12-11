@@ -5,7 +5,14 @@ import HeroCarousel from "../../components/HomeHero/HeroCarousel/HeroCarousel";
 export default async function HomeHero() {
   const bands = await client.fetch<BandAndFeaturedSong[]>(`*[_type == "band"]{
     name,
-    featuredsong[0]->
+    featuredsong[0] -> {
+      ...,
+      cover {
+        asset -> {
+          url
+        }
+      }
+    }
   }`);
 
   return <HeroCarousel featuredData={bands} />;
