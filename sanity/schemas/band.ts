@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import genres from './genres'
 
 export default defineType({
   name: 'band',
@@ -90,18 +91,11 @@ export default defineType({
     }),
     defineField({
       name: 'genres', // can this be defined separately and imported in both band and song schemas
-      title: 'Song Genres',
+      title: 'Band Genres',
       type: 'array',
       of: [{ type: 'string' }],
       options: {
-        list: [
-          { title: 'Rock', value: 'rock' },
-          { title: 'Grunge', value: 'grunge' },
-          { title: 'Psicodelia', value: 'psicodelia' },
-          { title: 'Hip Hop', value: 'hiphop' },
-          { title: 'Electronic', value: 'electronic' },
-          { title: 'Orchestral', value: 'orchestral' }
-        ]
+        list: genres
       },
     }),
     defineField({
