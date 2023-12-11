@@ -18,7 +18,7 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'soubdcloudurl',
+      name: 'soundcloudurl',
       title: 'Soundcloud URL',
       type: 'url',
       validation: Rule => Rule.uri({
