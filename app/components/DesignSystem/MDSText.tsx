@@ -6,20 +6,20 @@ const MDSFonts = {
 
 const MDSTextStyles = {
   // General
-  ["title"]: `${MDSFonts.condBold} mds-text-5 leading-none`,
-  ["subtitle"]: `${MDSFonts.condMed} mds-text-3 leading-none`,
-  ["primary-label"]: `${MDSFonts.condBold} mds-text-1 leading-none`,
-  ["meta-data"]: `${MDSFonts.condMed} mds-text-1 leading-none`,
-  ["meta-data-list"]: `${MDSFonts.condMed} mds-text-1 leading-none flex gap-mds-space-1 capitalize`,
-  ["paragraph"]: `${MDSFonts.sans} mds-text-2 leading-relaxed`,
+  ["title"]: `${MDSFonts.condBold} text-mds-text-5 leading-none uppercase`,
+  ["subtitle"]: `${MDSFonts.condMed} text-mds-text-3 leading-none`,
+  ["primary-label"]: `${MDSFonts.condBold} text-mds-text-1 leading-none`,
+  ["meta-data"]: `${MDSFonts.condMed} text-mds-text-1 leading-none`,
+  ["meta-data-list"]: `${MDSFonts.condMed} text-mds-text-1 leading-none flex gap-mds-space-1 capitalize`,
+  ["paragraph"]: `${MDSFonts.sans} text-mds-text-2 leading-relaxed`,
   // Hero
-  ["hero-card-band"]: `${MDSFonts.condBold} mds-text-1 leading-none uppercase bg-mds-grey-600 text-mds-grey-50 px-2 py-1`,
-  ["hero-card-song-name"]: `${MDSFonts.condBold} mds-text-4 leading-none`,
+  ["hero-card-band"]: `${MDSFonts.condBold} text-mds-text-1 leading-none uppercase bg-mds-grey-600 text-mds-grey-50 px-2 py-1`,
+  ["hero-card-song-name"]: `${MDSFonts.condBold} text-mds-text-4 leading-none`,
   // Hero Card Details
-  ["hero-card-detail-song-name"]: `${MDSFonts.condBold} mds-text-7 leading-none`,
-  ["hero-card-detail-grid-title"]: `${MDSFonts.condBold} mds-text-1 leading-none`,
-  ["hero-card-detail-grid-description"]: `${MDSFonts.condMed} mds-text-1 leading-none`,
-  ["band-profile-name"]: `${MDSFonts.condBold} mds-text-1 leading-none`,
+  ["hero-card-detail-song-name"]: `${MDSFonts.condBold} text-mds-text-7 leading-none`,
+  ["hero-card-detail-grid-title"]: `${MDSFonts.condBold} text-mds-text-1 leading-none`,
+  ["hero-card-detail-grid-description"]: `${MDSFonts.condMed} text-mds-text-1 leading-none`,
+  ["band-profile-name"]: `${MDSFonts.condBold} text-mds-text-1 leading-none`,
 };
 
 const MDSTextColor = {
