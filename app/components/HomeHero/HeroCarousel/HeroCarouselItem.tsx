@@ -1,5 +1,5 @@
-import MDSMetaData from "@/components/DesignSystem/MDSMetaData";
-import MDSText from "@/components/DesignSystem/MDSText";
+import MDSMetaData from "@/app/components/DesignSystem/MDSMetaData";
+import MDSText from "@/app/components/DesignSystem/MDSText";
 import { useRef, useState } from "react";
 
 const styles = {

@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { transformCardWrapper, removeTransform } from "./HeroCarouselHelpers";
 
-import HeroCarouselItem from "@/components/HomeHero/HeroCarousel/HeroCarouselItem";
+import HeroCarouselItem from "@/app/components/HomeHero/HeroCarousel/HeroCarouselItem";
 
 const styles = {
   heroContainer: `relative min-w-screen flex min-h-screen flex-col justify-center bg-mds-grey-100 p-8 align-middle overflow-hidden`,

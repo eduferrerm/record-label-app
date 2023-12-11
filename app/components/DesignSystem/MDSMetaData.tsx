@@ -1,4 +1,4 @@
-import MDSText from "@/components/DesignSystem/MDSText";
+import MDSText from "@/app/components/DesignSystem/MDSText";
 
 interface MDSMetaData {
   list: string[];

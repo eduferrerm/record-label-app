@@ -1,6 +1,6 @@
 import { Roboto } from "next/font/google";
 import { Roboto_Condensed } from "next/font/google";
-import HomeHero from "@/components/HomeHero/HomeHero";
+import HomeHero from "@/app/components/HomeHero/HomeHero";
 
 const robotoRegular = Roboto({
   subsets: ["latin"],
