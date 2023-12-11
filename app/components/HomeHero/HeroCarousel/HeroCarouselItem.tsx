@@ -1,4 +1,5 @@
-import MDSText from "@/components/Design_System/MDSText";
+import MDSMetaData from "@/app/components/DesignSystem/MDSMetaData";
+import MDSText from "@/app/components/DesignSystem/MDSText";
 import { useRef, useState } from "react";
 
 const styles = {
@@ -7,37 +8,12 @@ const styles = {
   button: `rounded-full border bg-orange-400 px-4 py-2`,
 };
 
-enum SlideType {
-  "song",
-  "event",
-  "about",
-  "video",
-  "post",
+interface CarouselItemBand {
+  band: BandAndFeaturedSong;
+  callback: (node: HTMLDivElement | null) => void;
 }
 
-export type SlideData = {
-  type: string;
-  data: {
-    cover: string | null;
-    title: string;
-    metaData: string[];
-    cta: string[];
-  };
-};
-
-type CarouselItemData = {
-  name: string;
-  genres: string[];
-  recentActivity: SlideData[];
-  callback: (node: HTMLDivElement | null) => void;
-};
-
-export default function HeroCarouselItem({
-  name,
-  genres,
-  callback,
-  recentActivity,
-}: CarouselItemData) {
+export default function HeroCarouselItem({ band, callback }: CarouselItemBand) {
   const [itemIsExpanded, setItemIsExpanded] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -49,8 +25,9 @@ export default function HeroCarouselItem({
       ref={cardRef}
     >
       <div className={styles.contentContainer}>
-        <MDSText text={name} styleName={"hero-card-band"} />
-        <MDSText text={genres[0]} styleName={"meta-data"} />
+        <MDSText styleName={"hero-card-band"}>{band.name}</MDSText>
+        <MDSText styleName={"title"}>{band.featuredsong.name}</MDSText>
+        <MDSMetaData list={band.featuredsong.genres} />
         <button
           className={styles.button}
           onClick={() => {

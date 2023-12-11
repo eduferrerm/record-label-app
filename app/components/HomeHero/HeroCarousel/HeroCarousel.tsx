@@ -1,8 +1,9 @@
+"use client";
+
 import { useRef, useState } from "react";
-import { mockDataBand } from "@/mockData";
 import { transformCardWrapper, removeTransform } from "./HeroCarouselHelpers";
 
-import HeroCarouselItem from "@/components/Home_Hero/HeroCarousel/HeroCarouselItem";
+import HeroCarouselItem from "@/app/components/HomeHero/HeroCarousel/HeroCarouselItem";
 
 const styles = {
   heroContainer: `relative min-w-screen flex min-h-screen flex-col justify-center bg-mds-grey-100 p-8 align-middle overflow-hidden`,
@@ -14,22 +15,22 @@ const styles = {
   },
 };
 
-type Header = {
-  children: React.ReactNode;
-};
+interface HeroCarousel {
+  featuredData: BandAndFeaturedSong[];
+}
 
-export default function HeroCarousel({ children }: Header): React.ReactNode {
+export default function HeroCarousel({
+  featuredData,
+}: HeroCarousel): React.ReactNode {
   const [itemIsExpanded, setitemIsExpanded] = useState(false);
   const cardContainerRef = useRef<HTMLDivElement>(null);
   const cardItemWrapperRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
 
   const handleCarouselItemClick = (
     itemClicked?: HTMLDivElement | null,
   ): void => {
     const cardContainer = cardContainerRef.current;
     const cardItemWrapper = cardItemWrapperRef.current;
-    const header = headerRef.current;
 
     setitemIsExpanded(!itemIsExpanded);
 
@@ -52,7 +53,16 @@ export default function HeroCarousel({ children }: Header): React.ReactNode {
 
   return (
     <div className={styles.heroContainer}>
-      <header ref={headerRef}>{children}</header>
+      <header className="text-mds-grey-600">
+        <h1 className="mb-4 font-mds-sans-cond-bold uppercase leading-none">
+          Melo
+          <br />
+          humano
+          <br />
+          Records
+        </h1>
+        <h2 className="mb-4">Un santuario sonoro de mariposas y taras bruja</h2>
+      </header>
       <div
         className={`${styles.carouselListItemsWrapper} ${
           itemIsExpanded ? "overflow-hidden" : "mb-8 overflow-x-auto px-8"
@@ -61,13 +71,11 @@ export default function HeroCarousel({ children }: Header): React.ReactNode {
         ref={cardContainerRef}
       >
         <div className={styles.cardItemDirectWrapper} ref={cardItemWrapperRef}>
-          {mockDataBand.map((band) => (
+          {featuredData.map((featuredDataItem) => (
             <HeroCarouselItem
-              key={band.name}
-              name={band.name}
-              genres={band.genres}
+              key={featuredDataItem.name}
+              band={featuredDataItem}
               callback={handleCarouselItemClick}
-              recentActivity={band.recentActivity}
             />
           ))}
         </div>

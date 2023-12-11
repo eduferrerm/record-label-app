@@ -30,28 +30,28 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       spacing: {
-        'mds-space-1': '1rem',    // 4px
-        'mds-space-2': '2rem',    // 8px
-        'mds-space-3': '3rem',    // 12px
-        'mds-space-4': '5rem',    // 20px
-        'mds-space-5': '8rem',    // 32px
-        'mds-space-6': '13rem',   // 52px
-        'mds-space-7': '21rem',   // 84px
-        'mds-space-8': '34rem',   // 136px
+        'mds-space-1': '.25rem',      // 4px
+        'mds-space-2': '.5rem',       // 8px
+        'mds-space-3': '.75rem',      // 12px
+        'mds-space-4': '1.25rem',     // 20px
+        'mds-space-5': '2rem',        // 32px
+        'mds-space-6': '3.25rem',     // 52px
+        'mds-space-7': '5.25rem',     // 84px
+        'mds-space-8': '8.5rem',      // 136px
       },
       fontSize: {
-        'mds-text-1': '3rem',     // 12px
-        'mds-text-2': '3.5rem',   // 14px
-        'mds-text-3': '4.5rem',   // 18px
-        'mds-text-4': '6rem',     // 24px
-        'mds-text-5': '7.5rem',   // 30px
-        'mds-text-6': '10.75rem', // 43px
-        'mds-text-7': '15rem',    // 60px
+        'mds-text-1': '.75rem',       // 12px
+        'mds-text-2': '.875rem',      // 14px
+        'mds-text-3': '1.125rem',     // 18px
+        'mds-text-4': '1.5rem',       // 24px
+        'mds-text-5': '1.875rem',     // 30px
+        'mds-text-6': '2.68rem',      // 43px
+        'mds-text-7': '3.75rem',      // 60px
       },
       borderRadius: {
-        'mds-rounded-1': '.5rem', // 2px
-        'mds-rounded-2': '1rem',  // 4px
-        'mds-rounded-3': '2rem'   // 8px
+        'mds-rounded-1': '.125rem',   // 2px
+        'mds-rounded-2': '.25rem',    // 4px
+        'mds-rounded-3': '.5rem'      // 8px
       }
     },
   },

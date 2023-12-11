@@ -1,7 +1,6 @@
-import HomeHero from "@/components/Home_Hero/HomeHero";
-
 import { Roboto } from "next/font/google";
 import { Roboto_Condensed } from "next/font/google";
+import HomeHero from "@/app/components/HomeHero/HomeHero";
 
 const robotoRegular = Roboto({
   subsets: ["latin"],
@@ -24,7 +23,7 @@ const robotoCondensedBold = Roboto_Condensed({
   variable: "--font-roboto-condensed-bold",
 });
 
-export default function Home() {
+export default async function Home() {
   return (
     <main
       className={`${robotoRegular.variable} ${robotoCondensedMedium.variable} ${robotoCondensedBold.variable}`}
