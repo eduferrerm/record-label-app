@@ -8,14 +8,16 @@ const styles = {
   button: `rounded-full border bg-orange-400 px-4 py-2`,
 };
 
-type CarouselItemData = {
+interface CarouselItemData {
   name: string;
+  songName?: string;
   genres: string[];
   callback: (node: HTMLDivElement | null) => void;
-};
+}
 
 export default function HeroCarouselItem({
   name,
+  songName,
   genres,
   callback,
 }: CarouselItemData) {
@@ -31,6 +33,7 @@ export default function HeroCarouselItem({
     >
       <div className={styles.contentContainer}>
         <MDSText styleName={"hero-card-band"}>{name}</MDSText>
+        {songName != null && <MDSText styleName={"title"}>{songName}</MDSText>}
         <MDSMetaData list={genres} />
         <button
           className={styles.button}

@@ -20,7 +20,7 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'songs', // relation
+      name: 'songs',
       title: 'Songs',
       type: 'array',
       validation: Rule => Rule.unique(),
@@ -44,6 +44,35 @@ export default defineType({
         }
       ]
     }),
+    defineField({
+      name: 'featuredsong',
+      title: 'Featured Song',
+      type: 'array',
+      validation: Rule => [
+        Rule.required().max(1),
+        Rule.unique()
+      ],
+      of: [
+        {
+          type: 'reference',
+          to: {
+            type: 'song',
+          },
+          options: {
+            filter: ({ document }) => {
+              return {
+                filter: 'band._ref == $bandID',
+                params: {
+                  bandID: document._id.includes('drafts.') ? document._id.slice(7) : document._id,
+                  bandSongs: document.songs
+                },
+              }
+            },
+          },
+        }
+      ]
+    }),
+
     defineField({
       name: 'bandimage',
       title: 'Band Image',
