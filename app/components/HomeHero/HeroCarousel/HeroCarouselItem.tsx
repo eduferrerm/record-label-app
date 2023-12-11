@@ -8,19 +8,12 @@ const styles = {
   button: `rounded-full border bg-orange-400 px-4 py-2`,
 };
 
-interface CarouselItemData {
-  name: string;
-  songName?: string;
-  genres: string[];
+interface CarouselItemBand {
+  band: BandAndFeaturedSong;
   callback: (node: HTMLDivElement | null) => void;
 }
 
-export default function HeroCarouselItem({
-  name,
-  songName,
-  genres,
-  callback,
-}: CarouselItemData) {
+export default function HeroCarouselItem({ band, callback }: CarouselItemBand) {
   const [itemIsExpanded, setItemIsExpanded] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -32,9 +25,9 @@ export default function HeroCarouselItem({
       ref={cardRef}
     >
       <div className={styles.contentContainer}>
-        <MDSText styleName={"hero-card-band"}>{name}</MDSText>
-        {songName != null && <MDSText styleName={"title"}>{songName}</MDSText>}
-        <MDSMetaData list={genres} />
+        <MDSText styleName={"hero-card-band"}>{band.name}</MDSText>
+        <MDSText styleName={"title"}>{band.featuredsong.name}</MDSText>
+        <MDSMetaData list={band.featuredsong.genres} />
         <button
           className={styles.button}
           onClick={() => {

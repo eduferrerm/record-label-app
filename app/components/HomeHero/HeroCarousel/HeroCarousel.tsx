@@ -16,10 +16,12 @@ const styles = {
 };
 
 interface HeroCarousel {
-  bands: Band[];
+  featuredData: BandAndFeaturedSong[];
 }
 
-export default function HeroCarousel({ bands }: HeroCarousel): React.ReactNode {
+export default function HeroCarousel({
+  featuredData,
+}: HeroCarousel): React.ReactNode {
   const [itemIsExpanded, setitemIsExpanded] = useState(false);
   const cardContainerRef = useRef<HTMLDivElement>(null);
   const cardItemWrapperRef = useRef<HTMLDivElement>(null);
@@ -31,8 +33,6 @@ export default function HeroCarousel({ bands }: HeroCarousel): React.ReactNode {
     const cardItemWrapper = cardItemWrapperRef.current;
 
     setitemIsExpanded(!itemIsExpanded);
-
-    console.log("bandData:", bands);
 
     if (
       itemClicked != null &&
@@ -71,11 +71,10 @@ export default function HeroCarousel({ bands }: HeroCarousel): React.ReactNode {
         ref={cardContainerRef}
       >
         <div className={styles.cardItemDirectWrapper} ref={cardItemWrapperRef}>
-          {bands.map((band) => (
+          {featuredData.map((featuredDataItem) => (
             <HeroCarouselItem
-              key={band.name}
-              name={band.name}
-              genres={band.genres}
+              key={featuredDataItem.name}
+              band={featuredDataItem}
               callback={handleCarouselItemClick}
             />
           ))}
