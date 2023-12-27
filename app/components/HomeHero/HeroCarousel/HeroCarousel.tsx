@@ -6,7 +6,7 @@ import { transformCardWrapper, removeTransform } from "./HeroCarouselHelpers";
 import HeroCarouselItem from "./HeroCarouselItem";
 
 const styles = {
-  heroContainer: `relative min-w-screen flex min-h-screen flex-col justify-center bg-mds-grey-100 p-8 align-middle overflow-hidden`,
+  heroContainer: `relative min-w-screen flex min-h-screen flex-col justify-between bg-mds-grey-100 p-8 align-middle overflow-hidden`,
   carouselListItemsWrapper: `no-scrollbar absolute left-0 bottom-0 inline-flex gap-2 snap-x  transition-all duration-500`,
   cardItemDirectWrapper: `inline-flex gap-4 transition-all duration-500`,
   fullWidthContainer: {
