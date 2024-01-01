@@ -8,27 +8,40 @@ type Slug = {
 	_type: string
 }
 
+type Cover = {
+	asset: {
+		_ref: string;
+		_type: string;
+	}
+}
+
+type CoverDetailed = {
+	asset: {
+		url: string
+	}
+}
+
 type Band = {
 	_ref: string;
 	_type: string
 	name: string;
 	genres: string[];
-	songs: BandSong[] | BandSongDetailed[];
+	songs: Song[] | SongDetailed[];
 	_createdAt: string;
 	influences: string[];
 	slug: Slug,
 	_id: string;
 	_updatedAt: string;
-	featuredsong: BandSong | BandSongDetailed
+	featuredsong: Song | SongDetailed
 };
 
-type BandSong = {
+type Song = {
 	_key: string;
 	_ref: string;
 	_type: string
 };
 
-type BandSongDetailed = {
+type SongDetailed = {
 	_type: string;
 	band: DataRef;
 	_updatedAt: string;
@@ -38,9 +51,10 @@ type BandSongDetailed = {
 	_id: string;
 	_createdAt: string;
 	name: string;
+	cover: CoverDetailed
 }
 
 type BandAndFeaturedSong = {
 	name: string;
-	featuredsong: BandSongDetailed;
+	featuredsong: SongDetailed;
 };

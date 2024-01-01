@@ -30,14 +30,24 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       spacing: {
-        'mds-space-1': '.25rem',      // 4px
-        'mds-space-2': '.5rem',       // 8px
-        'mds-space-3': '.75rem',      // 12px
-        'mds-space-4': '1.25rem',     // 20px
-        'mds-space-5': '2rem',        // 32px
-        'mds-space-6': '3.25rem',     // 52px
-        'mds-space-7': '5.25rem',     // 84px
-        'mds-space-8': '8.5rem',      // 136px
+        'mds-space-1': '.25rem',                // 4px
+        'mds-space-2': '.5rem',                 // 8px
+        'mds-space-3': '.75rem',                // 12px
+        'mds-space-4': '1.25rem',               // 20px
+        'mds-space-5': '2rem',                  // 32px
+        'mds-space-6': '3.25rem',               // 52px
+        'mds-space-7': '5.25rem',               // 84px
+        'mds-space-8': '8.5rem',                // 136px
+        'mds-hero-card-width': '18.87rem',      // 302px
+        'mds-hero-card-width-md': '29.37rem',   // 470px
+        'mds-hero-card-width-lg': '27.25rem',   // 436px
+        'mds-hero-card-width-xl': '36.37rem',   // 582px
+        'mds-hero-card-width-xxl': '39.68rem',  // 635px
+        'mds-hero-card-height': '14.18rem',     // 227px
+        'mds-hero-card-height-md': '22rem',     // 352px
+        'mds-hero-card-height-lg': '19rem',     // 304px
+        'mds-hero-card-height-xl': '25.37rem',  // 406px
+        'mds-hero-card-height-xxl': '27.62rem', // 442px
       },
       fontSize: {
         'mds-text-1': '.75rem',       // 12px
