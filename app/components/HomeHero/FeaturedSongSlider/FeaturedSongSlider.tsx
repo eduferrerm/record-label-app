@@ -19,10 +19,10 @@ export default function FeaturedSongSlider({
   featuredData,
 }: FeaturedSongSlider): React.ReactNode {
   return (
-    <div className="min-w-screen relative flex min-h-screen flex-col justify-between overflow-hidden bg-mds-grey-100 p-8 align-middle">
+    <section className="min-w-screen relative flex min-h-screen flex-col justify-between overflow-hidden bg-mds-grey-100 p-8 align-middle">
       <FeaturedSongHeader />
       <FeaturedSongList featuredData={featuredData} />
-    </div>
+    </section>
   );
 }
 
@@ -45,7 +45,7 @@ function FeaturedSongList({
   featuredData,
 }: FeaturedSongSlider): React.ReactNode {
   return (
-    <div className="flex flex-col gap-mds-space-4">
+    <article className="flex flex-col gap-mds-space-4">
       <MDSText styleName={"subtitle"} semantic="h2">
         Tracks Recientes
       </MDSText>
@@ -62,6 +62,6 @@ function FeaturedSongList({
           ))}
         </div>
       </div>
-    </div>
+    </article>
   );
 }

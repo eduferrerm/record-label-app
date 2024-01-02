@@ -6,7 +6,7 @@ interface MDSTextType {
   styleName: MDSTextStyleNames;
   color?: MDSTextColorNames;
   children: string | JSX.Element | JSX.Element[];
-  semantic?: false | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  semantic?: false | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
 }
 
 const MDSFonts = {
@@ -17,7 +17,7 @@ const MDSFonts = {
 
 const MDSTextStyles = {
   // General
-  ["title"]: `${MDSFonts.condBold} text-mds-text-5 leading-none uppercase`,
+  ["title"]: `${MDSFonts.condBold} text-mds-text-4 md:text-mds-text-5 leading-none uppercase`,
   ["subtitle"]: `${MDSFonts.condMed} text-mds-text-3 leading-none`,
   ["primary-label"]: `${MDSFonts.condBold} text-mds-text-1 leading-none uppercase`,
   ["meta-data"]: `${MDSFonts.condMed} text-mds-text-1 leading-none`,
@@ -73,6 +73,8 @@ export default function MDSText({
       return <h5 className={textClasses}>{children}</h5>;
     case "h6":
       return <h6 className={textClasses}>{children}</h6>;
+    case "p":
+      return <p className={textClasses}>{children}</p>;
     case false:
       return <span className={textClasses}>{children}</span>;
   }

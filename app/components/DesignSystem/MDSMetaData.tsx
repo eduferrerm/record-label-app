@@ -7,7 +7,7 @@ interface MDSMetaData {
 export default function MDSMetaData({ list }: MDSMetaData) {
   const lastItem = list.length - 1;
   return (
-    <MDSText styleName={"meta-data-list"}>
+    <MDSText styleName={"meta-data-list"} semantic="p">
       {list.map((genre, idx) => (
         <span key={genre} className="flex gap-mds-space-1 text-mds-text-2">
           {genre}
