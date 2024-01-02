@@ -4,6 +4,7 @@ import MDSMetaData from "../../DesignSystem/MDSMetaData";
 import MDSText from "../../DesignSystem/MDSText";
 import FeaturedSongSliderImage from "./FeaturedSongSliderImage";
 import React from "react";
+import MDSButton from "../../DesignSystem/MDSButton";
 
 interface CarouselItemBand {
   band: BandAndFeaturedSong;
@@ -12,6 +13,10 @@ interface CarouselItemBand {
 export default function FeaturedSongSliderItem({ band }: CarouselItemBand) {
   const [itemSelected, setItemSelected] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+
+  const clickAction = () => {
+    console.log("a button was clicked");
+  };
 
   return (
     <div
@@ -24,14 +29,7 @@ export default function FeaturedSongSliderItem({ band }: CarouselItemBand) {
       />
       <div className="relative flex w-full items-center justify-center gap-mds-space-4 text-mds-grey-600">
         <ItemMeta band={band} />
-        <button
-          className="h-10 rounded-full border-2 border-solid border-mds-grey-600 px-2 font-mds-sans-cond-bold text-mds-text-1 uppercase leading-none"
-          onClick={() => {
-            console.log("a button was clicked");
-          }}
-        >
-          Curiosear
-        </button>
+        <MDSButton text="Cureosear" buttonAction={clickAction} />
       </div>
     </div>
   );
@@ -39,9 +37,13 @@ export default function FeaturedSongSliderItem({ band }: CarouselItemBand) {
 
 function ItemMeta({ band }: CarouselItemBand) {
   return (
-    <div className="flex w-full flex-col gap-mds-space-1">
-      <MDSText styleName={"hero-card-band"}>{band.name}</MDSText>
-      <MDSText styleName={"title"}>{band.featuredsong.name}</MDSText>
+    <div className="flex w-full flex-col gap-mds-space-2">
+      <MDSText styleName={"hero-card-band"} semantic="h3">
+        {band.name}
+      </MDSText>
+      <MDSText styleName={"title"} semantic="p">
+        {band.featuredsong.name}
+      </MDSText>
       <MDSMetaData list={band.featuredsong.genres} />
     </div>
   );
