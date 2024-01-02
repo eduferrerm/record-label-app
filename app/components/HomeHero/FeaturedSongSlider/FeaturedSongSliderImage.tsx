@@ -9,7 +9,7 @@ export default function FeaturedSongSliderImage({
   imageSrc,
 }: FeaturedSongSliderImageType) {
   return (
-    <div className="relative aspect-[4/3] w-full">
+    <div className={`relative aspect-[4/3] w-full`}>
       <Image
         src={imageSrc}
         fill={true}

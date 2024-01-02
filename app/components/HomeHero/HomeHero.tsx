@@ -1,6 +1,6 @@
 import { client } from "../../../sanity/client";
 
-import HeroCarousel from "./FeaturedSongSlider/FeaturedSongSlider";
+import FeaturedSongSlider from "./FeaturedSongSlider/FeaturedSongSlider";
 
 export default async function HomeHero() {
   const bands = await client.fetch<BandAndFeaturedSong[]>(`*[_type == "band"]{
@@ -15,5 +15,5 @@ export default async function HomeHero() {
     }
   }`);
 
-  return <HeroCarousel featuredData={bands} />;
+  return <FeaturedSongSlider featuredData={bands} />;
 }

@@ -9,9 +9,9 @@ export default function MDSMetaData({ list }: MDSMetaData) {
   return (
     <MDSText styleName={"meta-data-list"}>
       {list.map((genre, idx) => (
-        <span key={genre} className="flex gap-mds-space-1">
+        <span key={genre} className="flex gap-mds-space-1 text-mds-text-2">
           {genre}
-          {idx < lastItem && <span className="text-mds-grey-200">|</span>}
+          {idx < lastItem && <span className="text-mds-grey-300">|</span>}
         </span>
       ))}
     </MDSText>

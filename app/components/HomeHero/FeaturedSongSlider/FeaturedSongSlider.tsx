@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
-
+import Image from "next/image";
 import FeaturedSongSliderItem from "./FeaturedSongSliderItem";
+import MDSText from "../../DesignSystem/MDSText";
 
 const styles = {
   fullWidthContainer: {
@@ -11,27 +11,46 @@ const styles = {
   },
 };
 
-interface HeroCarousel {
+interface FeaturedSongSlider {
   featuredData: BandAndFeaturedSong[];
 }
 
-export default function HeroCarousel({
+export default function FeaturedSongSlider({
   featuredData,
-}: HeroCarousel): React.ReactNode {
+}: FeaturedSongSlider): React.ReactNode {
   return (
     <div className="min-w-screen relative flex min-h-screen flex-col justify-between overflow-hidden bg-mds-grey-100 p-8 align-middle">
-      <header className="text-mds-grey-600">
-        <h1 className="mb-4 font-mds-sans-cond-bold uppercase leading-none">
-          Melo
-          <br />
-          humano
-          <br />
-          Records
-        </h1>
-        <h2 className="mb-4">Un santuario sonoro de mariposas y taras bruja</h2>
-      </header>
+      <FeaturedSongHeader />
+      <FeaturedSongList featuredData={featuredData} />
+    </div>
+  );
+}
+
+function FeaturedSongHeader() {
+  return (
+    <header>
+      <h1 className="relative h-[59px] w-[110px]">
+        <Image
+          src="/mh-logo.svg"
+          fill={true}
+          className="w-full object-contain"
+          alt="Melohumano records"
+        />
+      </h1>
+    </header>
+  );
+}
+
+function FeaturedSongList({
+  featuredData,
+}: FeaturedSongSlider): React.ReactNode {
+  return (
+    <div className="flex flex-col gap-mds-space-4">
+      <MDSText styleName={"subtitle"} semantic="h2">
+        Tracks Recientes
+      </MDSText>
       <div
-        className="no-scrollbar mb-8 inline-flex snap-x gap-2 overflow-hidden overflow-x-auto px-8"
+        className="no-scrollbar snap-xgap-2 mb-8 inline-flex overflow-hidden overflow-x-auto px-8"
         style={styles.fullWidthContainer}
       >
         <div className="inline-flex gap-4">

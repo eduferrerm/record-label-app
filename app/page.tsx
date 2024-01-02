@@ -26,7 +26,7 @@ const robotoCondensedBold = Roboto_Condensed({
 export default async function Home() {
   return (
     <main
-      className={`${robotoRegular.variable} ${robotoCondensedMedium.variable} ${robotoCondensedBold.variable}`}
+      className={`text-mds-grey-600 ${robotoRegular.variable} ${robotoCondensedMedium.variable} ${robotoCondensedBold.variable}`}
     >
       <HomeHero />
     </main>
