@@ -18,12 +18,20 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'soundcloudurl',
-      title: 'Soundcloud URL',
-      type: 'url',
-      validation: Rule => Rule.uri({
-        scheme: ['http', 'https']
-      })
+      name: 'spotifyid',
+      title: 'Spotify ID',
+      type: 'string',
+      validation: Rule => Rule.custom(name => {
+        if (typeof name === 'undefined') {
+          return true // Allow undefined values
+        }
+
+        let hasSpecialCharacters = /[^A-Za-z0-9]+/g.test(name);
+
+        return hasSpecialCharacters
+          ? 'No special characters allowed, use id portion found in embed code'
+          : true
+      }).warning()
     }),
     defineField({
       name: 'slug',
