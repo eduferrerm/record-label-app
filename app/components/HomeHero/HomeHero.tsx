@@ -15,5 +15,5 @@ export default async function HomeHero() {
     }
   }`);
 
-  return <FeaturedSongSlider featuredData={bands} />;
+  return <FeaturedSongSlider featuredSongData={bands} />;
 }

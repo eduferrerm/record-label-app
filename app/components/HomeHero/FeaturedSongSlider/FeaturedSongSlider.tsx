@@ -12,18 +12,7 @@ const styles = {
 };
 
 interface FeaturedSongSlider {
-  featuredData: BandAndFeaturedSong[];
-}
-
-export default function FeaturedSongSlider({
-  featuredData,
-}: FeaturedSongSlider): React.ReactNode {
-  return (
-    <section className="min-w-screen relative flex min-h-screen flex-col justify-between overflow-hidden bg-mds-grey-100 p-8 align-middle">
-      <FeaturedSongHeader />
-      <FeaturedSongList featuredData={featuredData} />
-    </section>
-  );
+  featuredSongData: BandAndFeaturedSong[];
 }
 
 function FeaturedSongHeader() {
@@ -42,7 +31,7 @@ function FeaturedSongHeader() {
 }
 
 function FeaturedSongList({
-  featuredData,
+  featuredSongData,
 }: FeaturedSongSlider): React.ReactNode {
   return (
     <article className="flex flex-col gap-mds-space-4">
@@ -54,14 +43,25 @@ function FeaturedSongList({
         style={styles.fullWidthContainer}
       >
         <div className="inline-flex gap-4">
-          {featuredData.map((featuredDataItem) => (
+          {featuredSongData.map((featuredSongDataBandItem) => (
             <FeaturedSongSliderItem
-              key={featuredDataItem.name}
-              band={featuredDataItem}
+              key={featuredSongDataBandItem.name}
+              band={featuredSongDataBandItem}
             />
           ))}
         </div>
       </div>
     </article>
+  );
+}
+
+export default function FeaturedSongSlider({
+  featuredSongData,
+}: FeaturedSongSlider): React.ReactNode {
+  return (
+    <section className="min-w-screen relative flex min-h-screen flex-col justify-between overflow-hidden bg-mds-grey-100 p-8 align-middle">
+      <FeaturedSongHeader />
+      <FeaturedSongList featuredSongData={featuredSongData} />
+    </section>
   );
 }

@@ -46,7 +46,7 @@ type SongDetailed = {
 	band: DataRef;
 	_updatedAt: string;
 	slug: Slug;
-	soundcloudurl: string;
+	spotifyid: string;
 	genres: string[];
 	_id: string;
 	_createdAt: string;
